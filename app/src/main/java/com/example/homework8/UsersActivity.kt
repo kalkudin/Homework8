@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.homework8.UserRecycleAdapter.Companion.EDIT_REQUEST_CODE
 import com.example.homework8.databinding.ActivityMainBinding
 
-class UsersActivity : AppCompatActivity(){
+class UsersActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var userAdapter: UserRecycleAdapter
     private val usersList = mutableListOf<User>(
@@ -18,6 +18,7 @@ class UsersActivity : AppCompatActivity(){
         User("Jurika", "magarikaci", "jurika_chemi@gmail.com"),
         User("malxazi", "mdzgoli", "magari_kaci@gmail.com"),
     )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
@@ -25,30 +26,33 @@ class UsersActivity : AppCompatActivity(){
 
         createRecycleView(usersList)
 
-        binding.addUserButton.setOnClickListener(){
+        binding.addUserButton.setOnClickListener() {
             addNewUser(usersList)
         }
     }
-    private fun createRecycleView(usersList:MutableList<User>){
+
+    private fun createRecycleView(usersList: MutableList<User>) {
         userAdapter = UserRecycleAdapter(usersList)
-        binding.recycleView.apply{
+        binding.recycleView.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             adapter = userAdapter
         }
     }
-    private fun addNewUser(userList:MutableList<User>){
+
+    private fun addNewUser(userList: MutableList<User>) {
         userList.add(
             User("", "", ""),
         )
         userAdapter.notifyItemInserted(userList.size - 1)
     }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == EDIT_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            val updatedUser = data?.getSerializableExtra("updatedUser") as User
-            val position = data.getIntExtra("position", -1)
+            val updatedUser = data?.getParcelableExtra<User>("updatedUser", User::class.java)
+            val position: Int = data?.getIntExtra("position", -1) ?: -1
 
-            if (position != -1) {
+            if (updatedUser != null && position != -1) {
                 usersList[position] = updatedUser
                 userAdapter.notifyItemChanged(position)
             }
