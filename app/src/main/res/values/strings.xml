@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Homework8</string>
+    <string name="first_name">First Name: John</string>
+    <string name="last_name">Last Name: Doe</string>
+    <string name="email">Email: john_doe@example.com</string>
+    <string name="delete_user">Delete User</string>
+    <string name="update_user">Update User</string>
+</resources>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UsersActivity"
+    android:orientation="vertical"
+    android:gravity="center">
+        <ImageButton
+            android:id="@+id/add_user_button"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:src="@drawable/icons8_plus"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/button_backgorund"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycle_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_gravity="center"/>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
