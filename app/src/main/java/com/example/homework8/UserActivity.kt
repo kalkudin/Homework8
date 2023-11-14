@@ -22,9 +22,11 @@ class UserActivity : AppCompatActivity() {
         val lastName = binding.updateLastName
         val email = binding.updateEmail
 
-        val inputFieldList = listOf(userName, lastName, email)
-
         binding.saveButton.setOnClickListener {
+            if(!checkValidEmail(email.text.toString())){
+                Toast.makeText(this, "Invalid Email", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             val updatedUser = User(
                 userName.text.toString(),
                 lastName.text.toString(),
@@ -43,10 +45,6 @@ class UserActivity : AppCompatActivity() {
             setResult(Activity.RESULT_OK, resultIntent)
             finish()
         }
-    }
-
-    private fun checkEmptyFields(inputList:List<EditText>):Boolean{
-        return inputList.any{element -> element.text.isNullOrBlank()}
     }
     private fun checkValidEmail(email:String):Boolean{
         return email.trim().contains("@") && !email.trim().startsWith("@") && !email.trim().endsWith("@")
